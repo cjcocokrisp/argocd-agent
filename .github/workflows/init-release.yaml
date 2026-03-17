@@ -45,7 +45,6 @@ jobs:
 
       - name: Update VERSION file
         run: |
-          set -ue
           echo "Setting version from ${{ env.CURRENT_VERSION }} to ${{ inputs.TARGET_VERSION }}."
           echo "${{ inputs.TARGET_VERSION }}" > VERSION
 
