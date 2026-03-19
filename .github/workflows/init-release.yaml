@@ -67,8 +67,8 @@ jobs:
       - name: Create PR
         uses: peter-evans/create-pull-request@v8
         with:
-          commit-message: "Bump version to ${{ inputs.TARGET_VERSION }}"
-          title: "Bump version to ${{ inputs.TARGET_VERSION }} on branch ${{ inputs.TARGET_BRANCH }}"
+          commit-message: "release: bump version to ${{ inputs.TARGET_VERSION }}"
+          title: "release: bump version to ${{ inputs.TARGET_VERSION }} on branch ${{ inputs.TARGET_BRANCH }}"
           body: "Updating VERSION and manifests to use ${{ inputs.TARGET_VERSION }}"
           branch: bump-version
           branch-suffix: random
