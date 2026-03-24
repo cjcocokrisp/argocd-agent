@@ -22,7 +22,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout source code
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd #v6.0.2
         with:
           fetch-depth: 0
           ref: ${{ inputs.TARGET_BRANCH }}
@@ -50,23 +50,23 @@ jobs:
           echo "${{ inputs.TARGET_VERSION }}" > VERSION
 
       - name: Install Kustomize
-        uses: syntaqx/setup-kustomize@v1
+        uses: syntaqx/setup-kustomize@4331ea02eec887906c9adbf7f431ca3db09908fd # v1.0.3
 
       - name: Generate new manifests
         run: |
           echo "Generating new manifests for version ${{ inputs.TARGET_VERSION }}"
 
           cd install/kubernetes/principal
-          kustomize edit set image argocd-agent=quay.io/argoprojlabs/argocd-agent:${{ inputs.TARGET_VERSION }}
+          kustomize edit set image argocd-agent=quay.io/argoprojlabs/argocd-agent:v${{ inputs.TARGET_VERSION }}
 
           cd ../agent
-          kustomize edit set image argocd-agent=quay.io/argoprojlabs/argocd-agent:${{ inputs.TARGET_VERSION }}
+          kustomize edit set image argocd-agent=quay.io/argoprojlabs/argocd-agent:v${{ inputs.TARGET_VERSION }}
 
       - name: Print changes to be pushed
         run: git --no-pager diff HEAD
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@v8
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
         with:
           commit-message: "release: bump version to ${{ inputs.TARGET_VERSION }}"
           title: "release: bump version to ${{ inputs.TARGET_VERSION }} on branch ${{ inputs.TARGET_BRANCH }}"
@@ -74,4 +74,3 @@ jobs:
           branch: bump-version
           branch-suffix: random
           signoff: true
-          # labels: release
