@@ -96,7 +96,7 @@ jobs:
 
       - name: Build argocd-agent container image
         run: |
-          make image-multiarch
+          make image
 
       - name: Push image to registry
         id: push
