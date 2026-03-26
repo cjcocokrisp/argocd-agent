@@ -203,7 +203,7 @@ jobs:
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.1.0
     with:
       base64-subjects: "${{ needs.cli-binary.outputs.hashes }}"
-      provenance-name: "argocd-agentctl_${{ github.ref_name }}.intoto.jsonl"
+      provenance-name: "argocd-agentctl_${{ needs.setup-variables.outputs.trimmed_tag }}.intoto.jsonl"
       upload-assets: true
 
   sbom:

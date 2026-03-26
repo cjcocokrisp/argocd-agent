@@ -33,6 +33,7 @@ archives:
       {{ .ProjectName }}-{{ .Os }}-{{ .Arch }}
 
 release:
+  make_latest: "{{ .Env.GORELEASER_MAKE_LATEST }}"
   header: |
     {{ .Env.CHANGELOG_CONTENT }}
 
